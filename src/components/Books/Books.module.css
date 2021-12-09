@@ -1,0 +1,11 @@
+.booksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cardWrapper {
+  padding: 1rem;
+  margin: 1rem 2.5%;
+  width: 20%;
+}

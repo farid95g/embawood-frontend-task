@@ -1,0 +1,22 @@
+.header {
+  background-color: rgba(0, 0, 0, .8);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.header .navbar ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.header .navbar ul li:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.header .navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+}

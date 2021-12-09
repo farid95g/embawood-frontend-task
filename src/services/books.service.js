@@ -1,8 +1,9 @@
 import axios from "axios";
+import { BASE_URL } from './config';
 
 export const booksService = {
-  getAllBooks() {
-    return axios.get("https://api.itbook.store/1.0/search/query=")
+  getAllBooks(query, page) {
+    return axios.get(`${BASE_URL}/search/query=${query}&page=${page}`)
       .then(response => response.data);
   }
 }
