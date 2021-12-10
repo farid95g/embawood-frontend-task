@@ -8,11 +8,12 @@ export const Homepage = ({
   booksPerPage,
   page,
   query,
-  getCurrentPage
+  getCurrentPage,
+  setCount
 }) => {
   return (
     <div>
-      {<Books books={books} />}
+      {<Books books={books} setCount={setCount} />}
 
       <CustomPagination
         total={total}

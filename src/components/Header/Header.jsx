@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from "./Header.module.css";
-import { BOOKS_ACTIONS } from '../../utils/books.constants';
+import { NavLink } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 
-export const Header = ({ searchBooks }) => {
+export const Header = ({ searchBooks, count }) => {
   const [title, setTitle] = useState("");
 
   const handleChange = e => setTitle(e.target.value);
@@ -26,8 +26,7 @@ export const Header = ({ searchBooks }) => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
+              <NavLink to="/embawood-frontend-task">Home</NavLink>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -36,9 +35,7 @@ export const Header = ({ searchBooks }) => {
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link>
+              <NavLink to="/cart">Shopping Cart <span>{count}</span></NavLink>
             </Nav>
             <Form className="d-flex" onSubmit={SubmitSearch}>
               <FormControl

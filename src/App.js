@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getBooks, getNextBooks, searchBooks } from "./store/actions/books";
 import { useDispatch, useSelector } from "react-redux";
-import { BOOKS_ACTIONS } from "./utils/books.constants";
+import { Cart } from "./pages/Cart/Cart";
 import { Header } from "./components/Header/Header";
 import { Homepage } from "./pages/Homepage/Homepage";
+import { Routes, Route } from "react-router-dom";
+import { LocalStorageServices } from "./services/localstorage.service";
 import "./App.css";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
   const page = useSelector((state) => state.page);
   const total = useSelector((state) => state.total);
   const booksPerPage = useSelector((state) => state.booksPerPage);
+  const cart = LocalStorageServices.get("books");
+  const [count, setCount] = useState(cart?.length);
 
   const getCurrentPage = (query, currentPage) => {
     dispatch(getNextBooks(query, currentPage));
@@ -28,18 +32,27 @@ function App() {
 
   return (
     <div className="App">
-      <Header 
+      <Header
         query={query}
         searchBooks={searchByQuery}
-       />
+        count={count}
+      />
 
-      <Homepage
-        books={books}
-        total={total}
-        booksPerPage={booksPerPage}
-        page={page}
-        query={query}
-        getCurrentPage={getCurrentPage} />
+      <main>
+        <Routes>
+          <Route path="/embawood-frontend-task" element={<Homepage
+            books={books}
+            total={total}
+            booksPerPage={booksPerPage}
+            page={page}
+            query={query}
+            getCurrentPage={getCurrentPage}
+            setCount={setCount}
+           />} />
+
+          <Route path="/cart" element={<Cart cart={cart} />} />
+        </Routes>
+      </main>
     </div>
   );
 }

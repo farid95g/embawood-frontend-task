@@ -5,7 +5,8 @@ export const BookCard = ({
   title,
   image,
   subtitle,
-  url
+  url,
+  addToCart
 }) => {
   const seeBookDetails = (url) => {
     window.open(url, "_blank");
@@ -20,7 +21,7 @@ export const BookCard = ({
           {subtitle}
         </Card.Text>
         <Button variant="primary" onClick={() => seeBookDetails(url)}>See details</Button>
-        <Button variant="primary" onClick={() => seeBookDetails(url)}>See details</Button>
+        <Button variant="primary" className="ms-2" onClick={addToCart}>Add to cart</Button>
       </Card.Body>
     </Card>
   );
