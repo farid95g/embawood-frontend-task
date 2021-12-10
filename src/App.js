@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { getBooks } from "./store/actions/books";
+import { getBooks, getNextBooks, searchBooks } from "./store/actions/books";
 import { useDispatch, useSelector } from "react-redux";
+import { BOOKS_ACTIONS } from "./utils/books.constants";
 import { Header } from "./components/Header/Header";
 import { Homepage } from "./pages/Homepage/Homepage";
 import "./App.css";
@@ -13,8 +14,12 @@ function App() {
   const total = useSelector((state) => state.total);
   const booksPerPage = useSelector((state) => state.booksPerPage);
 
-  const getCurrentPage = (CurrentPage) => {
-    dispatch(getBooks(query, CurrentPage));
+  const getCurrentPage = (query, currentPage) => {
+    dispatch(getNextBooks(query, currentPage));
+  }
+
+  const searchByQuery = (query) => {
+    dispatch(searchBooks(query));
   }
 
   useEffect(() => {
@@ -23,12 +28,17 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header 
+        query={query}
+        searchBooks={searchByQuery}
+       />
+
       <Homepage
         books={books}
         total={total}
         booksPerPage={booksPerPage}
         page={page}
+        query={query}
         getCurrentPage={getCurrentPage} />
     </div>
   );

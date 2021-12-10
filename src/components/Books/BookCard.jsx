@@ -20,6 +20,7 @@ export const BookCard = ({
           {subtitle}
         </Card.Text>
         <Button variant="primary" onClick={() => seeBookDetails(url)}>See details</Button>
+        <Button variant="primary" onClick={() => seeBookDetails(url)}>See details</Button>
       </Card.Body>
     </Card>
   );

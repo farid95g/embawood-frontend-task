@@ -5,6 +5,7 @@ export const CustomPagination = ({
   total,
   booksPerPage,
   page,
+  query,
   getCurrentPage,
 }) => {
   let active = Number(page);
@@ -17,7 +18,7 @@ export const CustomPagination = ({
         <Pagination.Item
           key={number}
           active={number === active}
-          onClick={() => getCurrentPage(number)}
+          onClick={() => getCurrentPage(query, number)}
         >
           {number}
         </Pagination.Item>

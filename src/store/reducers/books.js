@@ -2,7 +2,7 @@ import { BOOKS_ACTIONS } from "./../../utils/books.constants";
 
 const initialState = {
   books: [],
-  query: "",
+  query: "all",
   page: 1,
   total: 0,
   booksPerPage: 10,
@@ -26,6 +26,12 @@ export const booksReducer = (state = initialState, action) => {
       return {
         ...state,
         page: action.payload,
+      };
+
+    case BOOKS_ACTIONS.SET_QUERY:
+      return {
+        ...state,
+        query: action.payload
       };
 
     default:

@@ -7,6 +7,7 @@ export const Homepage = ({
   total,
   booksPerPage,
   page,
+  query,
   getCurrentPage
 }) => {
   return (
@@ -17,6 +18,7 @@ export const Homepage = ({
         total={total}
         booksPerPage={booksPerPage}
         page={page}
+        query={query}
         getCurrentPage={getCurrentPage}
       />
     </div>
