@@ -9,11 +9,11 @@ export const CustomPagination = ({
 }) => {
   let active = Number(page);
   let items = [];
-  let lastPageNumber = Math.ceil(Number(total) / booksPerPage);
+  let lastPageNumber = Math.ceil(total / booksPerPage);
   if (isFinite(lastPageNumber)) {
-    console.log(lastPageNumber);
     for (let number = 1; number <= lastPageNumber; number++) {
-      items.push(
+      items = [
+        ...items,
         <Pagination.Item
           key={number}
           active={number === active}
@@ -21,17 +21,16 @@ export const CustomPagination = ({
         >
           {number}
         </Pagination.Item>
-      );
+      ];
     }
   }
 
   return (
     <div className="d-flex justify-content-center mt-3">
       <Pagination>
-        <Pagination.First onClick={() => getCurrentPage(1)} />
-        <Pagination.Prev onClick={() => getCurrentPage(active - 1)} />
+        <Pagination.First onClick={() => getCurrentPage(1)} disabled={active === 1} />
+        <Pagination.Prev onClick={() => getCurrentPage(active - 1)} disabled={active === 1} />
         {items.map((item, index) => {
-          console.log(item, index);
           if (index < 2 || index > lastPageNumber - 3) {
             return item;
           } else {
@@ -45,8 +44,8 @@ export const CustomPagination = ({
           }
           return null;
         })}
-        <Pagination.Next onClick={() => getCurrentPage(active + 1)} />
-        <Pagination.Last onClick={() => getCurrentPage(lastPageNumber)} />
+        <Pagination.Next onClick={() => getCurrentPage(active + 1)} disabled={active === lastPageNumber} />
+        <Pagination.Last onClick={() => getCurrentPage(lastPageNumber)} disabled={active === lastPageNumber} />
       </Pagination>
     </div>
   );

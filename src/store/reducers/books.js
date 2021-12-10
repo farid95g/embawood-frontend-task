@@ -5,7 +5,7 @@ const initialState = {
   query: "",
   page: 1,
   total: 0,
-  booksPerPage: 0,
+  booksPerPage: 10,
 };
 
 export const booksReducer = (state = initialState, action) => {
@@ -20,12 +20,6 @@ export const booksReducer = (state = initialState, action) => {
       return {
         ...state,
         total: action.payload,
-      };
-
-    case BOOKS_ACTIONS.SET_BOOKS_PER_PAGE:
-      return {
-        ...state,
-        booksPerPage: action.payload,
       };
 
     case BOOKS_ACTIONS.GET_CURRENT_PAGE:
